@@ -1,11 +1,9 @@
 package com.ihm.goouttometz.goouttometz.bo;
 
 
-
 /**
  * Created by oualidqannouf on 1/18/2018.
  */
-
 public class Site {
 
     private long id;

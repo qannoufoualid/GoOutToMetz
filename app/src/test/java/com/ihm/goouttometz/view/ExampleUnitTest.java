@@ -1,4 +1,4 @@
-package com.example.fufu.goouttometz;
+package com.ihm.goouttometz.view;
 
 import org.junit.Test;
 
