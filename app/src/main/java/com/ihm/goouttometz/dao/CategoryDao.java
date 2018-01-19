@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.ihm.goouttometz.goouttometz.bo.Category;
+import com.ihm.goouttometz.bo.Category;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -15,8 +15,7 @@ import java.util.List;
  */
 
 public class CategoryDao {
-
-
+    
     private static final String TABLE_CATEGORY = "category";
     private DatabaseHelper databaseHelper;
 
