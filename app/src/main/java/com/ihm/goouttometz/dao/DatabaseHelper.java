@@ -45,8 +45,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "categoryId INTEGER," +
                 "FOREIGN KEY (categoryId) REFERENCES category(id) )";
 
-
-
         // create tables
         db.execSQL(CREATE_CATEGORY_TABLE);
         db.execSQL(CREATE_SITE_TABLE);

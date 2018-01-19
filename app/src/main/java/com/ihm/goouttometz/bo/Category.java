@@ -16,6 +16,15 @@ public class Category {
      */
     private String label;
 
+
+    public Category() {
+
+    }
+
+    public Category(String label) {
+        this.label = label;
+    }
+
     public long getId() {
         return id;
     }
@@ -30,5 +39,14 @@ public class Category {
 
     public void setLabel(String label) {
         this.label = label;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", label='" + label + '\'' +
+                '}';
     }
 }
