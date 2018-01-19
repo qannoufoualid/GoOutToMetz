@@ -1,6 +1,7 @@
 package com.ihm.goouttometz.dao;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -15,6 +16,8 @@ import java.util.List;
  */
 
 public class SiteDao {
+
+    private static SiteDao instance;
 
     private static final String TABLE_SITE = "site";
     private DatabaseHelper databaseHelper;
@@ -38,10 +41,15 @@ public class SiteDao {
     private static final String[] COLUMNS = {KEY_ID,KEY_NAME, KEY_LATITUDE, KEY_LONGITUDE, KEY_ADDRESS, KEY_SUMMARY, KEY_CATEGORY_ID};
 
 
-    public SiteDao(DatabaseHelper databaseHelper){
-        this.databaseHelper = databaseHelper;
+    private SiteDao(Context context){
+        this.databaseHelper = DatabaseHelper.getInstance(context);
     }
 
+    public static SiteDao getInstance(Context context){
+        if(instance == null)
+            instance = new SiteDao(context);
+        return  instance;
+    }
     public long add(Site site){
         Log.d("addSite", site.toString());
         // 1. get reference to writable DB
