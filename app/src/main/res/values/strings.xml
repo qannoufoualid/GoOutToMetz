@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">goouttometz</string>
+    <string name="button_search_name">Chercher...</string>
+    <string name="button_add">+</string>
+    <string name="button_list">Liste</string>
+
 </resources>
