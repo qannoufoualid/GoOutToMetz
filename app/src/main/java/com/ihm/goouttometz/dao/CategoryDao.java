@@ -15,7 +15,7 @@ import java.util.List;
  */
 
 public class CategoryDao {
-    
+
     private static final String TABLE_CATEGORY = "category";
     private DatabaseHelper databaseHelper;
 
@@ -30,7 +30,7 @@ public class CategoryDao {
         this.databaseHelper = databaseHelper;
     }
 
-    public void add(Category category){
+    public long add(Category category){
         Log.d("addBook", category.toString());
         // 1. get reference to writable DB
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
@@ -40,12 +40,14 @@ public class CategoryDao {
         values.put(KEY_LABEL, category.getLabel());
 
         // 3. insert
-        db.insert(TABLE_CATEGORY, // table
+        long insertId = db.insert(TABLE_CATEGORY, // table
                 null, //nullColumnHack
                 values); // key/value -> keys = column names/ values = column values
 
         // 4. close
         db.close();
+
+        return insertId;
     }
 
 
@@ -73,7 +75,7 @@ public class CategoryDao {
             } while (cursor.moveToNext());
         }
 
-        Log.d("getAll()", categories.toString());
+        Log.d("CategoryDao.getAll()", categories.toString());
 
         // return books
         return categories;

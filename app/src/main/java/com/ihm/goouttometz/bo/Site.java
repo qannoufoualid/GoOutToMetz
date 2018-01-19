@@ -11,9 +11,20 @@ public class Site {
     private float latitude;
     private float longitude;
     private String address;
-    private int categoryId;
+    private long categoryId;
     private String summary;
 
+    public Site() {
+    }
+
+    public Site(String name, float latitude, float longitude, String address, long categoryId, String summary) {
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.address = address;
+        this.categoryId = categoryId;
+        this.summary = summary;
+    }
 
     public String getName() {
         return name;
@@ -55,11 +66,11 @@ public class Site {
         this.id = id;
     }
 
-    public int getCategoryId() {
+    public long getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(int categoryId) {
+    public void setCategoryId(long categoryId) {
         this.categoryId = categoryId;
     }
 
@@ -69,5 +80,18 @@ public class Site {
 
     public void setSummary(String summary) {
         this.summary = summary;
+    }
+
+    @Override
+    public String toString() {
+        return "Site{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", address='" + address + '\'' +
+                ", categoryId=" + categoryId +
+                ", summary='" + summary + '\'' +
+                '}';
     }
 }
