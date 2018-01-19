@@ -2,7 +2,10 @@ package com.ihm.goouttometz.view;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.widget.Button;
+import android.content.Intent;
+import android.widget.Toast;
 
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -33,8 +36,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         button_search.setOnClickListener(new SearchButtonListener(this));
 
-
-
     }
 
 
@@ -55,5 +56,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    }
+
+
+    @Override
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 1){
+            if(resultCode == 1){
+                Toast t = Toast.makeText(this, data.getStringArrayExtra("lol")[0]+data.getStringArrayExtra("lol")[1], Toast.LENGTH_LONG);
+            }else{
+                System.out.println("Le résult est pas bon : "+ resultCode);
+            }
+        }else{
+            System.out.println("Le code a changé");
+        }
     }
 }

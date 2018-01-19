@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Window;
+import android.widget.Button;
 
 import com.ihm.goouttometz.R;
+import com.ihm.goouttometz.view.listener.SearchLauchListener;
 
 
 
@@ -25,5 +27,11 @@ public class PopupSearchActivity extends Activity {
         int height = dm.heightPixels;
 
         getWindow().setLayout((int)(width*0.8), (int)(height*0.8));
+
+        Button button_ok = findViewById(R.id.button_search_ok);
+
+        button_ok.setOnClickListener(new SearchLauchListener(this));
     }
+
+
 }

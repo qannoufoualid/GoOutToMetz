@@ -3,5 +3,9 @@
     <string name="button_search_name">Chercher...</string>
     <string name="button_add">+</string>
     <string name="button_list">Liste</string>
+    <string name="distance">Distance : </string>
+    <string name="category">Catégorie : </string>
+    <string name="button_search_ok">Ok</string>
+
 
 </resources>
