@@ -6,25 +6,25 @@ import android.arch.persistence.room.PrimaryKey;
 /**
  * Created by oualidqannouf on 1/18/2018.
  */
-@Entity
+@Entity(tableName = "category")
 public class Category {
 
 
     /**
      * L'identifiant
      */
-    @PrimaryKey
-    private int id;
+    @PrimaryKey(autoGenerate = true)
+    private long id;
     /**
      * Le label de la catégorie
      */
     private String label;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

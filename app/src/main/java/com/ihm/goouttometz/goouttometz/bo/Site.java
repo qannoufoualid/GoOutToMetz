@@ -1,15 +1,32 @@
 package com.ihm.goouttometz.goouttometz.bo;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
+import android.arch.persistence.room.PrimaryKey;
+
 /**
  * Created by oualidqannouf on 1/18/2018.
  */
+@Entity(tableName = "site",
+        foreignKeys = {
+                @ForeignKey(
+                        entity = Category.class,
+                        parentColumns = "id",
+                        childColumns = "categoryId",
+                        onDelete = ForeignKey.SET_NULL
+                )},
+        indices = { @Index(value = "id")}
+)
 public class Site {
 
+    @PrimaryKey(autoGenerate = true)
+    private long id;
     private String name;
     private float latitude;
     private float longitude;
-    private String adress;
-    private Category category;
+    private String address;
+    private int categoryId;
     private String summary;
 
 
@@ -37,20 +54,28 @@ public class Site {
         this.longitude = longitude;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public Category getCategory() {
-        return category;
+    public long getId() {
+        return id;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getSummary() {
