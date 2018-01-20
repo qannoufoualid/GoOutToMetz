@@ -1,6 +1,7 @@
 package com.ihm.goouttometz.dao;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -16,6 +17,8 @@ import java.util.List;
 
 public class CategoryDao {
 
+    private static CategoryDao instance;
+
     private static final String TABLE_CATEGORY = "category";
     private DatabaseHelper databaseHelper;
 
@@ -25,11 +28,14 @@ public class CategoryDao {
 
     private static final String[] COLUMNS = {KEY_ID,KEY_LABEL};
 
-
-    public CategoryDao(DatabaseHelper databaseHelper){
-        this.databaseHelper = databaseHelper;
+    private CategoryDao(Context context){
+        this.databaseHelper = DatabaseHelper.getInstance(context);
     }
-
+    public static CategoryDao getInstance(Context context){
+        if(instance == null)
+            instance = new CategoryDao(context);
+        return instance;
+    }
     public long add(Category category){
         Log.d("addBook", category.toString());
         // 1. get reference to writable DB
