@@ -6,8 +6,6 @@ import android.util.Log;
 import android.widget.Button;
 import android.content.Intent;
 import android.widget.Toast;
-
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -15,11 +13,17 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.ihm.goouttometz.R;
+import com.ihm.goouttometz.bo.Category;
+import com.ihm.goouttometz.bo.Site;
+import com.ihm.goouttometz.service.CategoryService;
+import com.ihm.goouttometz.service.SiteService;
 import com.ihm.goouttometz.view.listener.SearchButtonListener;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    CategoryService cs;
+    SiteService ss;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Button button_list = findViewById(R.id.buttonList);
 
         button_search.setOnClickListener(new SearchButtonListener(this));
+
+        // Let's set some data here !!
+        CategoryService cs = CategoryService.getInstance(this);
+        cs.generateData();
+        SiteService ss = SiteService.getInstance(this);
+        ss.generateData();
+        Log.i("Info", "I will know give you the museum");
+        for(Site s : ss.findSitesByCateory(3)){
+            System.out.println(s.getName());
+        }
+
 
     }
 
@@ -64,7 +79,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == 1){
             if(resultCode == 1){
-                Toast t = Toast.makeText(this, data.getStringArrayExtra("lol")[0]+data.getStringArrayExtra("lol")[1], Toast.LENGTH_LONG);
+                Log.i("Pouet",data.getStringArrayExtra("lol")[0]+data.getStringArrayExtra("lol")[1]);
+
             }else{
                 System.out.println("Le résult est pas bon : "+ resultCode);
             }

@@ -39,4 +39,8 @@ public class CategoryService {
         return dao.getAll();
     }
 
+    public void generateData(){
+        dao.generateData();
+    }
+
 }

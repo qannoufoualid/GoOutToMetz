@@ -59,5 +59,8 @@ public class SiteService {
         return dao.findSitesByCateory(categoryId);
     }
 
+    public void generateData(){
+        dao.generateData();
+    }
 
 }

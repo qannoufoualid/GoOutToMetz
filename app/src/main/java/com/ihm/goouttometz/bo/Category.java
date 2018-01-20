@@ -21,6 +21,11 @@ public class Category {
 
     }
 
+    public Category(long id, String label){
+        this.id = id;
+        this.label = label;
+    }
+
     public Category(String label) {
         this.label = label;
     }

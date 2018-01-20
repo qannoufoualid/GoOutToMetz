@@ -10,6 +10,7 @@ import com.ihm.goouttometz.bo.Category;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by oualidqannouf on 1/19/2018.
@@ -88,13 +89,15 @@ public class CategoryDao {
     }
 
     public List<Category> generateData(){
-        List<Category>///
-        ...
-
+        List<Category> list= new ArrayList<Category>();
+        list.add(new Category(1, "Restaurant"));
+        list.add(new Category(2, "Cinéma"));
+        list.add(new Category(3, "Musée"));
+        list.add(new Category(4, "Eglise"));
         return list;
     }
 
-    public persitMockData(){
+    public void persitMockData(){
         for(Category cat : generateData()){
             add(cat);
         }

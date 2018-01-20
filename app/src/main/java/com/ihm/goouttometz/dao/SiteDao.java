@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.ihm.goouttometz.bo.Site;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -245,4 +246,18 @@ public class SiteDao {
 
     }
 
+    public List<Site> generateData(){
+        ArrayList<Site> s = new ArrayList<Site>();
+        s.add(new Site("Musée de la cour d'Or",49.120991f,6.178037f,"2 Rue du Haut Poirier, 57000 Metz",
+                3,"Un musée. Les gens qui bossent là-bas sont adorables."));
+        s.add(new Site("Cathédrale",49.119765f,6.175456f,"Place d'Armes, 57000 Metz",
+                3,"La lanterne du bon Dieu"));
+        return s;
+    }
+
+    public void persitMockData(){
+        for(Site cat : generateData()){
+            add(cat);
+        }
+    }
 }
