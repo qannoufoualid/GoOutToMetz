@@ -81,4 +81,18 @@ public class CategoryDao {
         return categories;
     }
 
+    public List<Category> generateData(){
+        List<Category>///
+        ...
+
+        return list;
+    }
+
+    public persitMockData(){
+        for(Category cat : generateData()){
+            add(cat);
+        }
+    }
+
+
 }
