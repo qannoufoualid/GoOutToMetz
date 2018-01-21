@@ -60,7 +60,7 @@ public class SiteService {
     }
 
     public void generateData(){
-        dao.generateData();
+        dao.persitMockData();
     }
 
 }

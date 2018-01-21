@@ -45,10 +45,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         cs.generateData();
         SiteService ss = SiteService.getInstance(this);
         ss.generateData();
-        Log.i("Info", "I will know give you the museum");
-        for(Site s : ss.findSitesByCateory(3)){
-            System.out.println(s.getName());
-        }
 
 
     }
@@ -80,7 +76,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if(requestCode == 1){
             if(resultCode == 1){
                 Log.i("Pouet",data.getStringArrayExtra("lol")[0]+data.getStringArrayExtra("lol")[1]);
-
+                Log.i("Info", "I will know give you the museum");
+                for(Site s : ss.findSitesByCateory(3)){
+                    System.out.println(s.getName());
+                }
             }else{
                 System.out.println("Le résult est pas bon : "+ resultCode);
             }

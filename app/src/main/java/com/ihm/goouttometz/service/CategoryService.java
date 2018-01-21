@@ -40,7 +40,7 @@ public class CategoryService {
     }
 
     public void generateData(){
-        dao.generateData();
+        dao.persitMockData();
     }
 
 }
