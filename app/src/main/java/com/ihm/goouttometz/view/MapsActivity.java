@@ -17,6 +17,8 @@ import com.ihm.goouttometz.bo.Category;
 import com.ihm.goouttometz.bo.Site;
 import com.ihm.goouttometz.service.CategoryService;
 import com.ihm.goouttometz.service.SiteService;
+import com.ihm.goouttometz.view.listener.DisplayFormButtonListener;
+import com.ihm.goouttometz.view.listener.DisplayListButtonListener;
 import com.ihm.goouttometz.view.listener.SearchButtonListener;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -37,7 +39,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Button button_search = findViewById(R.id.buttonSearch);
         Button button_add = findViewById(R.id.buttonAdd);
         Button button_list = findViewById(R.id.buttonList);
-
+        button_add.setOnClickListener(new DisplayFormButtonListener(this));
+        button_list.setOnClickListener(new DisplayListButtonListener(this));
         button_search.setOnClickListener(new SearchButtonListener(this));
 
         // Let's set some data here !!

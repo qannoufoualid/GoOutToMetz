@@ -30,7 +30,7 @@ public class SiteDaoInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
         DatabaseHelper helper = DatabaseHelper.getInstance(appContext);
-        SiteDao dao = new SiteDao(helper);
+        SiteDao dao = SiteDao.getInstance(appContext);
         List<Site> sites =  dao.getAll();
         int initialSize = sites.size();
 
@@ -49,7 +49,7 @@ public class SiteDaoInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
         DatabaseHelper helper = DatabaseHelper.getInstance(appContext);
-        SiteDao dao = new SiteDao(helper);
+        SiteDao dao = SiteDao.getInstance(appContext);
 
         Site site = new Site("site X", 20, 20, "Address X",1, "summary");
         long insertedId = dao.add(site);
@@ -65,7 +65,7 @@ public class SiteDaoInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
         DatabaseHelper helper = DatabaseHelper.getInstance(appContext);
-        SiteDao dao = new SiteDao(helper);
+        SiteDao dao = SiteDao.getInstance(appContext);
         List<Site> sites =  dao.getAll();
         int initialSize = sites.size();
 
@@ -84,8 +84,8 @@ public class SiteDaoInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
         DatabaseHelper helper = DatabaseHelper.getInstance(appContext);
-        SiteDao dao = new SiteDao(helper);
-        CategoryDao categoryDao = new CategoryDao(helper);
+        SiteDao dao = SiteDao.getInstance(appContext);
+        CategoryDao categoryDao = CategoryDao.getInstance(appContext);
         long insertedIdCategory = categoryDao.add(new Category("Cafe"));
 
 

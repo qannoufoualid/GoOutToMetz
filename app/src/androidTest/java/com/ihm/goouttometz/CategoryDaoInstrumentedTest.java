@@ -27,7 +27,7 @@ public class CategoryDaoInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
         DatabaseHelper helper = DatabaseHelper.getInstance(appContext);
-        CategoryDao dao = new CategoryDao(helper);
+        CategoryDao dao = CategoryDao.getInstance(appContext);
         List<Category> categories =  dao.getAll();
         int initialSize = categories.size();
 
