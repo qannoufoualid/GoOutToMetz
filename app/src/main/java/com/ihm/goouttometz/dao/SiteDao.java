@@ -256,8 +256,10 @@ public class SiteDao {
     }
 
     public void persitMockData(){
-        for(Site cat : generateData()){
-            add(cat);
+        if(getAll().isEmpty()) {
+            for (Site cat : generateData()) {
+                add(cat);
+            }
         }
     }
 }

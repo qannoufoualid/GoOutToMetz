@@ -98,8 +98,10 @@ public class CategoryDao {
     }
 
     public void persitMockData(){
-        for(Category cat : generateData()){
-            add(cat);
+        if(getAll().isEmpty()) {
+            for (Category cat : generateData()) {
+                add(cat);
+            }
         }
     }
 
