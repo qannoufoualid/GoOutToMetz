@@ -25,7 +25,7 @@ public class DisplayFormButtonListener implements OnClickListener {
     public void onClick(View view) {
 
         Intent intent = new Intent(activity, FormActivity.class);
-
+        intent.putExtra("LongLat", ((MapsActivity)activity).getLatlng());
         activity.startActivityForResult(intent, 2);
     }
 }

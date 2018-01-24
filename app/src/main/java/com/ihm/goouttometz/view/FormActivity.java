@@ -55,6 +55,8 @@ public class FormActivity extends AppCompatActivity {
 
         categorySpinner.setAdapter(adapter);
 
+        latitudeEditText.setText(Float.toString(this.getIntent().getExtras().getFloatArray("LongLat")[0]));
+        longitudeEditText.setText(Float.toString(this.getIntent().getExtras().getFloatArray("LongLat")[1]));
 
         addButton.setOnClickListener(new AddButtonListener(this, nameEditText, latitudeEditText, longitudeEditText, addressEditText, categorySpinner, summaryEditText));
         goBackButton.setOnClickListener(new GoBackButtonListener(this));
