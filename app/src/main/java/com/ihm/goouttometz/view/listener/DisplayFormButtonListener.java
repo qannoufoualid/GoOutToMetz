@@ -26,6 +26,6 @@ public class DisplayFormButtonListener implements OnClickListener {
 
         Intent intent = new Intent(activity, FormActivity.class);
 
-        activity.startActivity(intent);
+        activity.startActivityForResult(intent, 2);
     }
 }

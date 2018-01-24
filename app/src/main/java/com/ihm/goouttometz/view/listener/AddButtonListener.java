@@ -46,9 +46,18 @@ public class AddButtonListener implements OnClickListener {
     public void onClick(View view) {
 
         Site site = new Site(nameEditText.getText().toString(), Float.valueOf(latitudeEditText.getText().toString()), Float.valueOf(longitudeEditText.getText().toString()), addressEditText.getText().toString(), categorySpinner.getSelectedItemId(), summaryEditText.getText().toString());
-        siteService.add(site);
-        Intent intent = new Intent(activity, MapsActivity.class);
-
-        activity.startActivity(intent);
+        siteService.add(site); //ajout dans la base de donnée.
+        // The following might be completly useless.
+        Intent intent = new Intent();
+        intent.putExtra("nouvau site", new String[] {
+                nameEditText.getText().toString(),
+                latitudeEditText.getText().toString(), // don't forget to cast in float :)
+                longitudeEditText.getText().toString(),
+                addressEditText.getText().toString(),
+                String.valueOf(categorySpinner.getSelectedItemId()),
+                summaryEditText.getText().toString()
+        });
+        activity.setResult(1,intent);
+        activity.finish();
     }
 }

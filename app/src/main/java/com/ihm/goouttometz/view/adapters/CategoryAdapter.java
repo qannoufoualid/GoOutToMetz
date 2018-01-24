@@ -24,7 +24,7 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
     public CategoryAdapter(Context context, List<Category> categories) {
         super(context, 0, categories);
     }
-
+/*
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
@@ -44,5 +44,14 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
         // Return the completed view to render on screen
         return convertView;
     }
+*/
 
+    public View getView(int position, View convertView, ViewGroup parent) {
+        try {
+            throw new Exception("La méthode CategoryAdapter::getView a été appelé. Bordel.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return LayoutInflater.from(getContext()).inflate(R.layout.item_site, parent, false);
+    }
 }

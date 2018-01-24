@@ -7,7 +7,7 @@ import android.view.Window;
 import android.widget.Button;
 
 import com.ihm.goouttometz.R;
-import com.ihm.goouttometz.view.listener.SearchLauchListener;
+import com.ihm.goouttometz.view.listener.SearchLaunchButtonListener;
 
 
 
@@ -30,7 +30,7 @@ public class PopupSearchActivity extends Activity {
 
         Button button_ok = findViewById(R.id.button_search_ok);
 
-        button_ok.setOnClickListener(new SearchLauchListener(this));
+        button_ok.setOnClickListener(new SearchLaunchButtonListener(this));
     }
 
 

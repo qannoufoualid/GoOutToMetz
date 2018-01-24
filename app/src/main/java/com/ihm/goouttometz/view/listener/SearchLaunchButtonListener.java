@@ -9,11 +9,11 @@ import android.view.View;
  * Created by delemazu3u on 19/01/2018.
  */
 
-public class SearchLauchListener implements View.OnClickListener {
+public class SearchLaunchButtonListener implements View.OnClickListener {
 
     Context maps_context;
 
-    public SearchLauchListener(Context context){
+    public SearchLaunchButtonListener(Context context){
         maps_context = context;
     }
 

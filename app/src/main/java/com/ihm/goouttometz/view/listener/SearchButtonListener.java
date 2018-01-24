@@ -20,6 +20,8 @@ public class SearchButtonListener implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        ((Activity) maps_context).startActivityForResult(new Intent(maps_context, PopupSearchActivity.class), 1);
+        Intent intent = new Intent(maps_context, PopupSearchActivity.class);
+        intent.putExtra("LongLat", new float[] {});
+        ((Activity) maps_context).startActivityForResult(intent, 1);
     }
 }

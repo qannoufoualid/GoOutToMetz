@@ -87,7 +87,7 @@
         android:layout_alignLeft="@+id/etName"
         android:layout_alignStart="@+id/etName"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:text="" />
 
     <EditText
@@ -98,7 +98,7 @@
         android:layout_alignLeft="@+id/etLatitude"
         android:layout_alignStart="@+id/etLatitude"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:text="" />
 
     <EditText

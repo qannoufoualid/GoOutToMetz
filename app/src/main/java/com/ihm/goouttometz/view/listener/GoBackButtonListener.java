@@ -27,8 +27,14 @@ public class GoBackButtonListener implements OnClickListener {
     @Override
     public void onClick(View view) {
 
-        Intent intent = new Intent(activity, MapsActivity.class);
+        //Intent intent = new Intent(activity, MapsActivity.class);
 
-        activity.startActivity(intent);
+        //activity.startActivity(intent);
+
+        Intent intent = new Intent();
+        intent.putExtra("lol", new String[] {"Bring Sajuuk", " to bear !!"});
+        activity.setResult(0, intent);// probably overkill
+        activity.finish();
+
     }
 }
