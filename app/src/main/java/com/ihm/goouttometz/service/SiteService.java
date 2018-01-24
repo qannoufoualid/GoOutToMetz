@@ -63,4 +63,8 @@ public class SiteService {
         dao.persitMockData();
     }
 
+    @Override
+    public String toString() {
+        return "J'existe";
+    }
 }
