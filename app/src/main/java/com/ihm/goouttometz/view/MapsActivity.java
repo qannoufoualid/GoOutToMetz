@@ -82,11 +82,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
-        //LatLng sydney = new LatLng(-34, 151);
-        //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         updateCamera(true);
         updateDisplayedPoints();
     }
@@ -127,20 +122,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.clear();
         Log.i("INFO !! ", "J'ai effacé les marker !!");
         if(my_location != null && asked_category != 0) {// very clumsy
-            //float[] results = new float[3];
             Location loc = new Location("Mais pourquoi diable a t'on besoin de ca !!");
             for (Site s : ss.findSitesByCateory(asked_category)) {
                 loc.setLatitude(s.getLatitude());
                 loc.setLongitude(s.getLongitude());
-//                Location.distanceBetween(my_location.getLatitude(), my_location.getLongitude(), s.getLatitude(), s.getLatitude(), results);
-//                Log.i("INFO !! ", "Distance entre moi et le point : " + String.valueOf(results[0]));
-//                if (results[0] <= distance) {
-
                 if(my_location.distanceTo(loc)<=distance){
                     Log.i("INFO !! ", "Distance entre moi et le point : " + String.valueOf(my_location.distanceTo(loc)));
 
                     LatLng site_loc = new LatLng(s.getLatitude(), s.getLongitude());
-                    mMap.addMarker(new MarkerOptions().position(site_loc).title(s.getName()));
+                    mMap.addMarker(new MarkerOptions().position(site_loc).title(s.getName()).snippet(s.getAddress()));
                     Log.i("FILL", "Fill the map : I placed "+ s.getName());
                 }
             }
@@ -148,7 +138,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Log.i("INFO !! ", "Je suis passé par ici");
             for (Site s: ss.getAll() ) {
                 LatLng site_loc = new LatLng(s.getLatitude(), s.getLongitude());
-                mMap.addMarker(new MarkerOptions().position(site_loc).title(s.getName()));
+                mMap.addMarker(new MarkerOptions().position(site_loc).title(s.getName()).snippet(s.getAddress()));
             }
         }
 
