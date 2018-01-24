@@ -122,13 +122,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void updateDisplayedPoints(){
-        float[] results = new float[1];
-        for (Site s: ss.getAll()) {
-           Location.distanceBetween(my_location.getLatitude(), my_location.getLongitude(), s.getLatitude(),s.getLatitude(),results);
-           if(results[0] >= distance){
-               LatLng site_loc = new LatLng(s.getLatitude(), s.getLongitude());
-               mMap.addMarker(new MarkerOptions().position(site_loc).title(s.getName()));
-           }
+        if(my_location != null) {
+            float[] results = new float[1];
+            for (Site s : ss.getAll()) {
+                Location.distanceBetween(my_location.getLatitude(), my_location.getLongitude(), s.getLatitude(), s.getLatitude(), results);
+                if (results[0] >= distance) {
+                    LatLng site_loc = new LatLng(s.getLatitude(), s.getLongitude());
+                    mMap.addMarker(new MarkerOptions().position(site_loc).title(s.getName()));
+                }
+            }
+        }else{
+            for (Site s: ss.getAll() ) {
+                LatLng site_loc = new LatLng(s.getLatitude(), s.getLongitude());
+                mMap.addMarker(new MarkerOptions().position(site_loc).title(s.getName()));
+            }
         }
 
     }
@@ -159,7 +166,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public float[] getLatlng(){
-        return new float[] {(float)my_location.getLatitude(), (float)my_location.getLongitude()};
+         return new float[] {(float)my_location.getLatitude(), (float)my_location.getLongitude()};
+    }
+
+    public Location getMy_location(){
+        return my_location;
     }
 
 }
