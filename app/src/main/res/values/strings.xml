@@ -6,6 +6,7 @@
     <string name="distance">Distance : </string>
     <string name="category">Catégorie : </string>
     <string name="button_search_ok">Ok</string>
+    <string name="launch_search_button_text">Lancer la recherche</string>
 
 
 </resources>

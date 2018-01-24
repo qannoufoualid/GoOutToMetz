@@ -45,7 +45,7 @@ public class AddButtonListener implements OnClickListener {
     @Override
     public void onClick(View view) {
 
-        Site site = new Site(nameEditText.getText().toString(), Float.valueOf(latitudeEditText.getText().toString()), Float.valueOf(longitudeEditText.getText().toString()), addressEditText.getText().toString(), categorySpinner.getSelectedItemId(), summaryEditText.getText().toString());
+        Site site = new Site(nameEditText.getText().toString(), Float.valueOf(latitudeEditText.getText().toString()), Float.valueOf(longitudeEditText.getText().toString()), addressEditText.getText().toString(), categorySpinner.getSelectedItemPosition()+1, summaryEditText.getText().toString());
         siteService.add(site); //ajout dans la base de donnée.
         // The following might be completly useless.
         Intent intent = new Intent();

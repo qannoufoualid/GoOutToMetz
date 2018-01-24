@@ -39,7 +39,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Location my_location;
     public static int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
 
-    public static final int distance = 5000;
+    public int distance;
+    public int asked_category;
 
 
     @Override
@@ -57,6 +58,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         button_add.setOnClickListener(new DisplayFormButtonListener(this));
         button_list.setOnClickListener(new DisplayListButtonListener(this));
         button_search.setOnClickListener(new SearchButtonListener(this));
+
+        distance = 5000;
+        asked_category = 0;
 
         // Let's set some data here !!
         cs = CategoryService.getInstance(this);
@@ -93,12 +97,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Résultat de la popup
         if(requestCode == 1){
             if(resultCode == 1){
-                Log.i("Pouet",data.getStringArrayExtra("lol")[0]+data.getStringArrayExtra("lol")[1]);
-                Log.i("Info", "I will know give you the museum");
-                Log.i("Existence", ss.toString());
-                for(Site s : ss.findSitesByCateory(3)){
-                    System.out.println(s.getName());
-                }
+                Log.i("INFO !! ",  "Catégorie : " + String.valueOf(data.getIntArrayExtra("lol")[0]+1) + ", Distance : " + String.valueOf(data.getIntArrayExtra("lol")[1]));
+                asked_category = data.getIntArrayExtra("lol")[0]+1;
+                distance = data.getIntArrayExtra("lol")[1];
+                updateDisplayedPoints();
             }else{
                 System.out.println("Le résult est pas bon : "+ resultCode);
             }
@@ -108,7 +110,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             if(resultCode == 1){
                 updateDisplayedPoints();
             }else{
-                Log.i("Info", "L'utilisateur n'a pas mis de nouveau point"); //Might be a bit overkill
+                Log.i("INFO !! ", "L'utilisateur n'a pas mis de nouveau point"); //Might be a bit overkill
             }
         }else {
             System.out.println("Le code a changé");
@@ -122,16 +124,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void updateDisplayedPoints(){
-        if(my_location != null) {
-            float[] results = new float[1];
-            for (Site s : ss.getAll()) {
-                Location.distanceBetween(my_location.getLatitude(), my_location.getLongitude(), s.getLatitude(), s.getLatitude(), results);
-                if (results[0] >= distance) {
+        mMap.clear();
+        Log.i("INFO !! ", "J'ai effacé les marker !!");
+        if(my_location != null && asked_category != 0) {// very clumsy
+            //float[] results = new float[3];
+            Location loc = new Location("Mais pourquoi diable a t'on besoin de ca !!");
+            for (Site s : ss.findSitesByCateory(asked_category)) {
+                loc.setLatitude(s.getLatitude());
+                loc.setLongitude(s.getLongitude());
+//                Location.distanceBetween(my_location.getLatitude(), my_location.getLongitude(), s.getLatitude(), s.getLatitude(), results);
+//                Log.i("INFO !! ", "Distance entre moi et le point : " + String.valueOf(results[0]));
+//                if (results[0] <= distance) {
+
+                if(my_location.distanceTo(loc)<=distance){
+                    Log.i("INFO !! ", "Distance entre moi et le point : " + String.valueOf(my_location.distanceTo(loc)));
+
                     LatLng site_loc = new LatLng(s.getLatitude(), s.getLongitude());
                     mMap.addMarker(new MarkerOptions().position(site_loc).title(s.getName()));
+                    Log.i("FILL", "Fill the map : I placed "+ s.getName());
                 }
             }
         }else{
+            Log.i("INFO !! ", "Je suis passé par ici");
             for (Site s: ss.getAll() ) {
                 LatLng site_loc = new LatLng(s.getLatitude(), s.getLongitude());
                 mMap.addMarker(new MarkerOptions().position(site_loc).title(s.getName()));
@@ -159,7 +173,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 double latitude = my_location.getLatitude();
                 double longitude = my_location.getLongitude();
                 LatLng coordinate = new LatLng(latitude, longitude);
-                CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(coordinate, 16);
+                CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(coordinate, 12);
                 mMap.animateCamera(yourLocation);
             }
         }
