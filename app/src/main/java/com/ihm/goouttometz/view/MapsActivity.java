@@ -19,18 +19,20 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.ihm.goouttometz.R;
 import com.ihm.goouttometz.bo.Category;
 import com.ihm.goouttometz.bo.Site;
 import com.ihm.goouttometz.service.CategoryService;
 import com.ihm.goouttometz.service.SiteService;
+import com.ihm.goouttometz.view.adapters.MarkerInfo;
 import com.ihm.goouttometz.view.listener.DisplayFormButtonListener;
 import com.ihm.goouttometz.view.listener.DisplayListButtonListener;
 import com.ihm.goouttometz.view.listener.SearchButtonListener;
 
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
 
     private GoogleMap mMap;
@@ -84,6 +86,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         updateCamera(true);
         updateDisplayedPoints();
+
+        mMap.setInfoWindowAdapter(new MarkerInfo(getLayoutInflater()));
+        mMap.setOnInfoWindowClickListener(this);
     }
 
 
@@ -116,32 +121,43 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onResume(){
         super.onResume();
         updateCamera(false);
+        updateDisplayedPoints();
     }
 
     public void updateDisplayedPoints(){
-        mMap.clear();
-        Log.i("INFO !! ", "J'ai effacé les marker !!");
-        if(my_location != null && asked_category != 0) {// very clumsy
-            Location loc = new Location("Mais pourquoi diable a t'on besoin de ca !!");
-            for (Site s : ss.findSitesByCateory(asked_category)) {
-                loc.setLatitude(s.getLatitude());
-                loc.setLongitude(s.getLongitude());
-                if(my_location.distanceTo(loc)<=distance){
-                    Log.i("INFO !! ", "Distance entre moi et le point : " + String.valueOf(my_location.distanceTo(loc)));
+        if(mMap != null) {
+            mMap.clear();
+            Log.i("INFO !! ", "J'ai effacé les marker !!");
+            if (my_location != null && asked_category != 0) {// very clumsy
+                Location loc = new Location("Mais pourquoi diable a t'on besoin de ca !!");
+                for (Site s : ss.findSitesByCateory(asked_category)) {
+                    loc.setLatitude(s.getLatitude());
+                    loc.setLongitude(s.getLongitude());
+                    if (my_location.distanceTo(loc) <= distance) {
+//                        Log.i("INFO !! ", "Distance entre moi et le point : " + String.valueOf(my_location.distanceTo(loc)));
+//
+//                        LatLng site_loc = new LatLng(s.getLatitude(), s.getLongitude());
+//                        mMap.addMarker(new MarkerOptions().position(site_loc).title(s.getName()).snippet(s.getAddress()));
+//                        Log.i("FILL", "Fill the map : I placed " + s.getName());
+                        addMarker(s.getLatitude(), s.getLongitude(), s.getName(), s.getSummary(), my_location.distanceTo(loc));
+                    }
+                }
+            } else {
+                Log.i("INFO !! ", "Je suis passé par ici");
+                for (Site s : ss.getAll()) {
+//                    LatLng site_loc = new LatLng(s.getLatitude(), s.getLongitude());
+//                    mMap.addMarker(new MarkerOptions().position(site_loc).title(s.getName()).snippet(s.getAddress()));
+                    addMarker(s.getLatitude(), s.getLongitude(), s.getName(), s.getSummary(), 0);
 
-                    LatLng site_loc = new LatLng(s.getLatitude(), s.getLongitude());
-                    mMap.addMarker(new MarkerOptions().position(site_loc).title(s.getName()).snippet(s.getAddress()));
-                    Log.i("FILL", "Fill the map : I placed "+ s.getName());
                 }
             }
-        }else{
-            Log.i("INFO !! ", "Je suis passé par ici");
-            for (Site s: ss.getAll() ) {
-                LatLng site_loc = new LatLng(s.getLatitude(), s.getLongitude());
-                mMap.addMarker(new MarkerOptions().position(site_loc).title(s.getName()).snippet(s.getAddress()));
-            }
         }
+    }
 
+    private void addMarker(float lat, float lo, String title, String description, float dist){
+        LatLng site_loc = new LatLng(lat, lo);
+
+        mMap.addMarker(new MarkerOptions().position(site_loc).title(title).snippet(description + "\n" +String.valueOf(dist)));
     }
 
     public void updateCamera(boolean need){
@@ -177,4 +193,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return my_location;
     }
 
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        Log.i("FAKENEWS !!", "Je ne sais pas quand est-ce que ça apparait.");
+    }
 }
