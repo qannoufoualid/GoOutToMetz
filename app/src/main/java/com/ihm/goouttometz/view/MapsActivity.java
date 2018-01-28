@@ -157,7 +157,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void addMarker(float lat, float lo, String title, String description, float dist){
         LatLng site_loc = new LatLng(lat, lo);
 
-        mMap.addMarker(new MarkerOptions().position(site_loc).title(title).snippet(description + "\n" +String.valueOf(dist)));
+        mMap.addMarker(new MarkerOptions().position(site_loc).title(title).snippet(description + "\n" + "Distance : "+String.valueOf(dist)));
     }
 
     public void updateCamera(boolean need){
@@ -181,6 +181,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 LatLng coordinate = new LatLng(latitude, longitude);
                 CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(coordinate, 12);
                 mMap.animateCamera(yourLocation);
+            }else{
+                LatLng metz = new LatLng(49.119118, 6.176321);
+                CameraUpdate look_at_metz = CameraUpdateFactory.newLatLngZoom(metz, 11);
+                mMap.animateCamera(look_at_metz);
             }
         }
     }

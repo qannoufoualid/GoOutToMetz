@@ -250,8 +250,15 @@ public class SiteDao {
         ArrayList<Site> s = new ArrayList<Site>();
         s.add(new Site("Musée de la cour d'Or",49.120991f,6.178037f,"2 Rue du Haut Poirier, 57000 Metz",
                 3,"Un musée. Les gens qui bossent là-bas sont adorables."));
-        s.add(new Site("Cathédrale",49.119765f,6.175456f,"Place d'Armes, 57000 Metz",
-                4,"La lanterne du bon Dieu"));
+        s.add(new Site("Cathédrale",49.119765f,6.175456f,"Place d'Armes, 57000 Metz",4,"La lanterne du bon Dieu"));
+        s.add(new Site("La Winstub",49.117083f,6.177050f,"2 Rue Dupont des Loges, 57000 Metz",1,"Le restaurant préféré d'Antoine Delemazure.\n" +
+                "C'est un restaurant de cuisine locale et alsacienne. On y mange pour un trentaine d'euros avec dessert et appéritif. C'est absolument déliscieux, je recommande l'escalope vielle alsace."));
+//        s.add(new Site("Cathédrale",49.119765f,6.175456f,"Place d'Armes, 57000 Metz",4,"La lanterne du bon Dieu"));
+//        s.add(new Site("Cathédrale",49.119765f,6.175456f,"Place d'Armes, 57000 Metz",4,"La lanterne du bon Dieu"));
+//        s.add(new Site("Cathédrale",49.119765f,6.175456f,"Place d'Armes, 57000 Metz",4,"La lanterne du bon Dieu"));
+//        s.add(new Site("Cathédrale",49.119765f,6.175456f,"Place d'Armes, 57000 Metz",4,"La lanterne du bon Dieu"));
+//        s.add(new Site("Cathédrale",49.119765f,6.175456f,"Place d'Armes, 57000 Metz",4,"La lanterne du bon Dieu"));
+//        s.add(new Site("Cathédrale",49.119765f,6.175456f,"Place d'Armes, 57000 Metz",4,"La lanterne du bon Dieu"));
         return s;
     }
 

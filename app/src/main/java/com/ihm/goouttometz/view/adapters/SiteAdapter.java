@@ -39,7 +39,8 @@ public class SiteAdapter extends ArrayAdapter<Site> {
         Button btnDelete = (Button) convertView.findViewById(R.id.btnDelete);
 
         // Populate the data into the template view using the data object
-        tvSiteName.setText(site.getName());
+        tvSiteName.setText(site.getName()+ "\n" + site.getSummary());
+        tvSiteName.setIncludeFontPadding(false);
         btnDelete.setOnClickListener(new DeleteSiteButtonListener(this, site));
 
         // Return the completed view to render on screen
