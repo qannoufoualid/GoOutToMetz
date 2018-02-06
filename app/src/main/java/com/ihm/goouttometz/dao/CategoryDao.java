@@ -94,6 +94,8 @@ public class CategoryDao {
         list.add(new Category(2, "Cinéma"));
         list.add(new Category(3, "Musée"));
         list.add(new Category(4, "Eglise"));
+        list.add(new Category(5, "Grand magasin"));
+        list.add(new Category(6, "Divers"));
         return list;
     }
 

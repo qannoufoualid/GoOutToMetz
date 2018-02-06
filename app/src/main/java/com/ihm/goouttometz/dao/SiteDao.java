@@ -253,12 +253,12 @@ public class SiteDao {
         s.add(new Site("Cathédrale",49.119765f,6.175456f,"Place d'Armes, 57000 Metz",4,"La lanterne du bon Dieu"));
         s.add(new Site("La Winstub",49.117083f,6.177050f,"2 Rue Dupont des Loges, 57000 Metz",1,"Le restaurant préféré d'Antoine Delemazure.\n" +
                 "C'est un restaurant de cuisine locale et alsacienne. On y mange pour un trentaine d'euros avec dessert et appéritif. C'est absolument déliscieux, je recommande l'escalope vielle alsace."));
-//        s.add(new Site("Cathédrale",49.119765f,6.175456f,"Place d'Armes, 57000 Metz",4,"La lanterne du bon Dieu"));
-//        s.add(new Site("Cathédrale",49.119765f,6.175456f,"Place d'Armes, 57000 Metz",4,"La lanterne du bon Dieu"));
-//        s.add(new Site("Cathédrale",49.119765f,6.175456f,"Place d'Armes, 57000 Metz",4,"La lanterne du bon Dieu"));
-//        s.add(new Site("Cathédrale",49.119765f,6.175456f,"Place d'Armes, 57000 Metz",4,"La lanterne du bon Dieu"));
-//        s.add(new Site("Cathédrale",49.119765f,6.175456f,"Place d'Armes, 57000 Metz",4,"La lanterne du bon Dieu"));
-//        s.add(new Site("Cathédrale",49.119765f,6.175456f,"Place d'Armes, 57000 Metz",4,"La lanterne du bon Dieu"));
+        s.add(new Site("Ikea Metz",49.150317f, 6.187889f,"Rue du Trou aux Serpents, 57140 La Maxe",5,"Temple du mobilier moderne et du samedi sacrifié"));
+        s.add(new Site("Temple Neuf",49.121071f, 6.171943f,"2 Place de la Comédie, 57000 Metz",4,"Quand il y a du soleil, c'est un endroit extraordianaire."));
+        s.add(new Site("Stade St-Sympphorien",49.110168f, 6.159404f,"3 Boulevard Saint-Symphorien, 57050 Longeville-lès-Metz",6,"Repère des fans un peu désespérés du FC-Metz"));
+        s.add(new Site("Eglise St-Joseph",49.100733f, 6.156766f,"5 Rue de l'Abbé Châtelain, 57950 Montigny-lès-Metz",4,"Une très jolie église, sur une très jolie place. Merveilleuse quand il fait beau. Les offices sont bien nazes en revanche."));
+        s.add(new Site("Fort de Queuleu",49.097243f, 6.204451f,"Quartier Metz-Queuleu, Allée Jean Burger - Rue du fort de Queuleu, 57070 Metz",6,"Un fort. Un lieu très fréquanté par les joggeurs."));
+        s.add(new Site("Palais du Gouverneur de Metz",49.113757f, 6.168435f,"9 Rue de la Citadelle, 57000 Metz",6,"La résisdence du commandant de la région militaire Nord-Est."));
         return s;
     }
 
